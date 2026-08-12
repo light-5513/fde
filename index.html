@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Hub | Forward Deployed Engineer Program</title>
+    <meta name="description" content="Become a Forward Deployed Engineer. A production-grade training program by Technical Hub for Final and Pre-Final Year Students.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://technicalhub.io/images/logo.ico">
+    <style>
+        /* ============================================================
+           ROOT VARIABLES & RESET
+        ============================================================ */
+        :root {
+            --green: #009948;
+            --green-dark: #007a39;
+            --green-glow: rgba(0, 153, 72, 0.15);
+            --bg: #ffffff;
+            --bg-2: #f8fafc;
+            --bg-3: #f1f5f9;
+            --card: #ffffff;
+            --card-hover: #f8fafc;
+            --border: #e2e8f0;
+            --border-green: rgba(0,153,72,0.3);
+            --text: #0f172a;
+            --muted: #64748b;
+            --white: #ffffff;
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+
+        /* ============================================================
+           NAVBAR
+        ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 999;
+            padding: 0.85rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+        .navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+        .navbar .logo img { height: 62px; transition: transform 0.3s; }
+        .navbar .logo img:hover { transform: scale(1.04); }
+        .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links .cta {
+            background: var(--green);
+            color: #fff !important;
+            padding: 0.6rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-links .cta:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--green-glow);
+        }
+
+        /* ============================================================
+           HERO
+        ============================================================ */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 12rem 2.5rem 6rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+        .hero-text { 
+            width: 100%;
+            max-width: 600px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0,153,72,0.12);
+            border: 1px solid var(--border-green);
+            color: var(--green);
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+            animation: fadeDown 0.6s ease both;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.7s 0.15s ease both;
+        }
+        .hero h1 .green { color: var(--green); }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 0.7s 0.3s ease both;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            animation: fadeUp 0.7s 0.45s ease both;
+        }
+        .btn-green {
+            background: var(--green);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        .btn-green:hover {
+            background: var(--green-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px var(--green-glow);
+        }
+        .btn-outline {
+            border: 2px solid var(--green);
+            color: var(--green);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: rgba(0,153,72,0.1);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           STATEMENT SECTION
+        ============================================================ */
+        .statement-section {
+            padding: 8rem 2rem;
+            background: var(--bg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .statement-section::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; height: 300px;
+            background: radial-gradient(ellipse, rgba(0,153,72,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .statement-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .statement-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--green);
+            opacity: 0.75;
+            margin-bottom: 1.5rem;
+        }
+        .statement-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 4.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 1.8rem;
+        }
+        .statement-part {
+            color: var(--text);
+        }
+        .statement-highlight {
+            color: var(--green);
+            text-shadow: 0 0 40px rgba(0,153,72,0.4);
+        }
+        .statement-arrow {
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            animation: arrowSlide 1.6s ease-in-out infinite;
+        }
+        .statement-arrow svg {
+            width: clamp(40px, 7vw, 80px);
+            height: auto;
+            stroke: currentColor;
+        }
+        .statement-sub {
+            font-size: clamp(0.75rem, 1.4vw, 1.1rem);
+            color: var(--muted);
+            white-space: nowrap;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        @keyframes arrowSlide {
+            0%, 100% { transform: translateX(0);   opacity: 1; }
+            50%       { transform: translateX(12px); opacity: 0.7; }
+        }
+
+        /* ============================================================
+           VENN DIAGRAM — Exact Shape & Colors
+        ============================================================ */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: sticky;
+            top: 15vh;
+            margin-top: -10vh;
+            transform: translateX(8vw);
+            pointer-events: auto;
+            animation: fadeScale 0.9s 0.5s ease both;
+            transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .hero-visual.center-stage {
+            transform: scale(1.1);
+            opacity: 0.15;
+        }
+        .venn {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: float3d 12s ease-in-out infinite;
+        }
+        @keyframes float3d {
+            0%, 100% { transform: translateY(0) rotateX(4deg) rotateY(-4deg) scale(1.55); }
+            33% { transform: translateY(-15px) rotateX(-2deg) rotateY(5deg) scale(1.55); }
+            66% { transform: translateY(10px) rotateX(5deg) rotateY(2deg) scale(1.55); }
+        }
+        /* Each circle base */
+        .vc {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            margin-top: -125px;
+            margin-left: -125px;
+            overflow: hidden;
+        }
+        @keyframes ghostInTop {
+            0% { opacity: 0; filter: blur(20px); transform: translate(0, -30px) scale(0.85); }
+            100% { opacity: 1; filter: blur(0); transform: translate(0, -72.17px) scale(1); }
+        }
+        @keyframes ghostInLeft {
+            0% { opacity: 0; filter: blur(20px); transform: translate(-30px, 15px) scale(0.85); }
+            100% { opacity: 1; filter: blur(0); transform: translate(-62.5px, 36.08px) scale(1); }
+        }
+        @keyframes ghostInRight {
+            0% { opacity: 0; filter: blur(20px); transform: translate(30px, 15px) scale(0.85); }
+            100% { opacity: 1; filter: blur(0); transform: translate(62.5px, 36.08px) scale(1); }
+        }
+        /* Top (Platform Engineer) */
+        .vc-top {
+            background: rgba(15, 23, 42, 0.04);
+            border: 1.5px solid rgba(15, 23, 42, 0.25);
+            box-shadow: 0 0 40px rgba(15, 23, 42, 0.06) inset;
+            opacity: 0;
+            animation: ghostInTop 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate;
+        }
+        /* Bottom-left (Software Engineer) */
+        .vc-left {
+            background: rgba(0, 153, 72, 0.06);
+            border: 1.5px solid rgba(0, 153, 72, 0.4);
+            box-shadow: 0 0 40px rgba(0, 153, 72, 0.1) inset;
+            opacity: 0;
+            animation: ghostInLeft 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate 1.3s;
+        }
+        /* Bottom-right (Solutions Architect) */
+        .vc-right {
+            background: rgba(0, 153, 72, 0.05);
+            border: 1.5px solid rgba(0, 153, 72, 0.4);
+            box-shadow: 0 0 40px rgba(0, 153, 72, 0.1) inset;
+            opacity: 0;
+            animation: ghostInRight 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate 2.6s;
+        }
+        
+        /* Central Glow to mimic the bright intersection */
+        .vc-center-glow {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            top: 50%;
+            left: 50%;
+            margin-top: -70px;
+            margin-left: -70px;
+            background: radial-gradient(circle, rgba(0, 153, 72, 0.5) 0%, rgba(0, 153, 72, 0.15) 40%, transparent 70%);
+            border-radius: 50%;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0;
+            animation: pulseCenter 3s ease-in-out infinite, ghostInCenter 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate 3.9s;
+        }
+        @keyframes ghostInCenter {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Labels Container */
+        .vlabel {
+            position: absolute;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+            user-select: none;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .vlabel-top {
+            margin-top: -125px;
+        }
+        .vlabel-left {
+            margin-top: 55px;
+            margin-left: -90px;
+        }
+        .vlabel-right {
+            margin-top: 55px;
+            margin-left: 90px;
+        }
+        .vlabel-center {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--green-dark);
+            text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.8);
+        }
+
+        @keyframes pulseCenter {
+            0%, 100% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 10px rgba(0, 153, 72, 0); }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 30px rgba(0, 153, 72, 0.3); }
+        }
+
+        /* Hero Main Title */
+        .hero-main-title {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.6rem;
+            animation: fadeUp 0.7s 0.15s ease both;
+        }
+        .arrow-anim {
+            display: inline-block;
+            color: var(--green);
+            animation: arrowPulse 1.5s ease-in-out infinite;
+        }
+        .hero-sub {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 1rem;
+            animation: fadeUp 0.7s 0.3s ease both;
+        }
+        .hero-sub strong { color: var(--green); }
+        .hero-desc {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 2.2rem;
+            animation: fadeUp 0.7s 0.42s ease both;
+        }
+        @keyframes arrowPulse {
+            0%, 100% { transform: translateX(0); }
+            50%       { transform: translateX(8px); }
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            flex: 0.9;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            animation: fadeScale 0.9s 0.5s ease both;
+        }
+        .glow-blob {
+            position: absolute;
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(0,153,72,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulsate 5s ease-in-out infinite alternate;
+        }
+        .hero-card {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.2rem;
+            width: 340px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: float 7s ease-in-out infinite;
+        }
+        .hero-card:hover { box-shadow: 0 30px 70px rgba(0,153,72,0.15); border-color: var(--border-green); }
+        .code-bar { height: 9px; border-radius: 5px; background: var(--bg-3); margin-bottom: 12px; }
+        .code-bar.w60 { width: 60%; }
+        .code-bar.w80 { width: 80%; }
+        .code-bar.w40 { width: 40%; }
+        .nodes { margin-top: 2rem; display: flex; flex-direction: column; gap: 10px; }
+        .node {
+            height: 14px;
+            border-radius: 7px;
+            background: var(--bg-3);
+            position: relative;
+        }
+        .node::after {
+            content: '';
+            position: absolute;
+            right: 14px; top: 4px;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+        }
+        .node.on::after { background: var(--green); box-shadow: 0 0 8px var(--green); }
+        .node.pulse::after { background: var(--green); animation: blink 1.2s ease infinite; }
+        .node.off::after { background: #2a3a55; }
+
+        /* ============================================================
+           SECTION COMMON
+        ============================================================ */
+        .section { padding: 6rem 2.5rem; }
+        .section-tag {
+            display: inline-block;
+            background: rgba(0,153,72,0.1);
+            border: 1px solid var(--border-green);
+            color: var(--green);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.2rem;
+        }
+        .section-heading {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .section-heading .green { color: var(--green); }
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 620px;
+        }
+        .center { text-align: center; margin: 0 auto; }
+        .center .section-sub { margin: 0 auto; }
+
+        /* ============================================================
+           WHAT IS FDE
+        ============================================================ */
+        .what-is-fde-section { background: var(--bg); }
+        .fde-def-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+        }
+        .fde-def-text {
+            font-size: 1.2rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        .fde-def-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .fde-def-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: left;
+        }
+        .fde-hl-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .fde-hl-card:hover {
+            border-color: var(--border-green);
+            transform: translateY(-5px);
+        }
+        .fde-hl-title {
+            color: var(--green);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .fde-hl-desc {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+        @media (max-width: 768px) {
+            .fde-def-inner { padding: 2.5rem 1.5rem; }
+            .fde-def-highlights { grid-template-columns: 1fr; gap: 1rem; }
+        }
+
+        /* ============================================================
+           VALUE PROPS
+        ============================================================ */
+        .vp-section { background: var(--bg-2); }
+        .vp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 3.5rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .vp-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.2rem;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .vp-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 0 1px var(--border-green);
+            border-color: var(--border-green);
+        }
+        .vp-icon {
+            width: 52px; height: 52px;
+            background: rgba(0,153,72,0.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.3rem;
+            transition: transform 0.3s;
+        }
+        .vp-card:hover .vp-icon { transform: scale(1.1) rotate(5deg); }
+        .vp-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .vp-card p { color: var(--muted); font-size: 0.97rem; }
+
+        /* ============================================================
+           AUDIENCE
+        ============================================================ */
+        .audience-section { background: var(--bg); }
+        .audience-inner {
+            max-width: 1100px;
+            margin: 3.5rem auto 0;
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3.5rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .audience-title { font-size: 2rem; font-weight: 800; line-height: 1.2; }
+        .audience-title .green { color: var(--green); }
+        .audience-items { display: flex; flex-direction: column; gap: 1.4rem; }
+        .audience-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .audience-item:hover { border-color: var(--border-green); transform: translateX(6px); }
+        .audience-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+        .audience-item p { color: var(--muted); font-size: 0.97rem; }
+
+        /* ============================================================
+           CURRICULUM ACCORDION
+        ============================================================ */
+        .curriculum-section { background: linear-gradient(to bottom, var(--bg-2), var(--bg)); }
+        .accord-wrap {
+            max-width: 860px;
+            margin: 4rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+        .accord {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .accord:hover { border-color: rgba(0,153,72,0.2); }
+        .accord.open {
+            border-color: var(--border-green);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 0 1px var(--border-green);
+        }
+        .accord-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.4rem 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .accord-btn:hover { background: rgba(255,255,255,0.02); }
+        .accord-emoji {
+            font-size: 1.7rem;
+            background: rgba(0,153,72,0.12);
+            border-radius: 10px;
+            padding: 0.55rem;
+            flex-shrink: 0;
+            line-height: 1;
+            transition: transform 0.35s, background 0.35s, box-shadow 0.35s;
+        }
+        .accord.open .accord-emoji {
+            transform: scale(1.1) rotate(-5deg);
+            background: var(--green);
+            box-shadow: 0 0 18px var(--green-glow);
+        }
+        .accord-info { flex: 1; }
+        .accord-mod {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.2rem;
+        }
+        .accord-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .accord-count {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+        .accord-arrow {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.4s, border-color 0.3s, background 0.3s;
+        }
+        .accord-arrow svg {
+            width: 14px; height: 14px;
+            fill: none;
+            stroke: var(--muted);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.3s;
+        }
+        .accord.open .accord-arrow {
+            transform: rotate(180deg);
+            border-color: var(--border-green);
+            background: rgba(0,153,72,0.1);
+        }
+        .accord.open .accord-arrow svg { stroke: var(--green); }
+
+        /* Accordion content & topic chips */
+        .accord-body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .accord.open .accord-body { grid-template-rows: 1fr; }
+        .accord-inner { overflow: hidden; }
+        .accord-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            padding: 0.5rem 1.8rem 1.8rem 4.8rem;
+        }
+        .topic-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.88rem;
+            color: var(--muted);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(8px) scale(0.95);
+        }
+        .topic-chip::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            flex-shrink: 0;
+        }
+        .accord.open .topic-chip {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        /* Stagger the chips */
+        .accord.open .topic-chip:nth-child(1)  { transition-delay: 0.08s; }
+        .accord.open .topic-chip:nth-child(2)  { transition-delay: 0.13s; }
+        .accord.open .topic-chip:nth-child(3)  { transition-delay: 0.18s; }
+        .accord.open .topic-chip:nth-child(4)  { transition-delay: 0.23s; }
+        .accord.open .topic-chip:nth-child(5)  { transition-delay: 0.28s; }
+        .accord.open .topic-chip:nth-child(6)  { transition-delay: 0.33s; }
+        .accord.open .topic-chip:nth-child(7)  { transition-delay: 0.38s; }
+        .accord.open .topic-chip:nth-child(8)  { transition-delay: 0.43s; }
+        .accord.open .topic-chip:nth-child(9)  { transition-delay: 0.48s; }
+        .accord.open .topic-chip:nth-child(10) { transition-delay: 0.53s; }
+        .accord.open .topic-chip:nth-child(n+11) { transition-delay: 0.58s; }
+        .topic-chip:hover {
+            border-color: var(--border-green);
+            color: var(--text);
+            background: rgba(0,153,72,0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+        .footer {
+            background: #050d1a;
+            border-top: 1px solid var(--border);
+            padding: 4rem 2.5rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-logo img { height: 62px; filter: brightness(0) invert(1); margin-bottom: 1.2rem; transition: transform 0.3s; }
+        .footer-logo img:hover { transform: scale(1.04); }
+        .footer-brand p { color: var(--muted); font-size: 0.95rem; max-width: 280px; }
+        .footer-col h4 { font-weight: 700; margin-bottom: 1.3rem; font-size: 0.95rem; }
+        .footer-col a { display: block; color: var(--muted); font-size: 0.92rem; margin-bottom: 0.8rem; transition: color 0.2s, padding-left 0.2s; }
+        .footer-col a:hover { color: var(--green); padding-left: 5px; }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* ============================================================
+           REVEAL ANIMATION (scroll) - Google Chrome OS Style
+        ============================================================ */
+        .reveal {
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        transform 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        filter 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.visible { 
+            opacity: 1; 
+            filter: blur(0);
+            transform: translateY(0) scale(1); 
+        }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.2s; }
+        .d3 { transition-delay: 0.3s; }
+        .d4 { transition-delay: 0.4s; }
+        .d5 { transition-delay: 0.5s; }
+        .d6 { transition-delay: 0.6s; }
+
+        /* ============================================================
+           KEYFRAMES
+        ============================================================ */
+        @keyframes fadeDown {
+            from { opacity:0; filter: blur(10px); transform:translateY(-20px); }
+            to   { opacity:1; filter: blur(0); transform:translateY(0); }
+        }
+        @keyframes fadeUp {
+            from { opacity:0; filter: blur(12px); transform:translateY(30px) scale(0.98); }
+            to   { opacity:1; filter: blur(0); transform:translateY(0) scale(1); }
+        }
+        @keyframes fadeScale {
+            from { opacity:0; filter: blur(15px); transform:scale(0.9); }
+            to   { opacity:1; filter: blur(0); transform:scale(1); }
+        }
+        @keyframes float {
+            0%,100% { transform:translateY(0); }
+            50%     { transform:translateY(-14px); }
+        }
+        @keyframes pulsate {
+            0%   { transform:scale(1); opacity:.4; }
+            100% { transform:scale(1.12); opacity:.8; }
+        }
+        @keyframes blink {
+            0%,100% { opacity:1; }
+            50%     { opacity:0.2; }
+        }
+
+        /* ============================================================
+           STATS BAR
+        ============================================================ */
+        .stats-bar {
+            background: var(--bg-2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3.5rem 2rem;
+        }
+        .stats-bar-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .stat-num {
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 800;
+            color: var(--green);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .stat-pct { font-size: 60%; letter-spacing: 0; }
+        .stat-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-weight: 500;
+            max-width: 140px;
+            line-height: 1.4;
+            text-align: center;
+        }
+        .stat-divider {
+            width: 1px;
+            height: 70px;
+            background: var(--border);
+            flex-shrink: 0;
+            margin: 0 3rem;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+        @media (max-width: 1024px) {
+            .audience-inner { grid-template-columns: 1fr; padding: 2.5rem 2rem; }
+        }
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 8rem; gap: 3.5rem; }
+            .hero p { margin: 0 auto 2.5rem; }
+            .hero-btns { justify-content: center; }
+            .hero-visual { width: 100%; justify-content: center; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-brand p { max-width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .nav-links a:not(.cta) { display: none; }
+            .vp-grid { grid-template-columns: 1fr; }
+            .accord-topics { padding: 0.5rem 1.2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <img src="https://technicalhub.io/images/technicalhub_logs/GREEN%20TM.png" alt="Technical Hub">
+        </a>
+        <div class="nav-links">
+            <a href="#what-is-fde">What is FDE</a>
+            <a href="#about">Value Props</a>
+            <a href="#audience">Who's it for</a>
+            <a href="#curriculum">Curriculum</a>
+            <a href="#apply" class="cta">Apply Now</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-text">
+            <div class="hero-badge">✦ A Global Engineering Program</div>
+            <h1 class="hero-main-title">The Engineer <span class="green">Enterprises</span> Actually Need.</h1>
+            <p class="hero-sub">Become a <strong>Forward Deployed Engineer</strong> — the role at the intersection of AI, cloud infrastructure, and real client outcomes.</p>
+            <p class="hero-desc">Learn to deploy, customize, and operationalize advanced AI agents and software within real business environments.</p>
+            <div class="hero-btns">
+                <a href="#curriculum" class="btn-green">View Curriculum</a>
+                <a href="#apply" class="btn-outline">Apply Now</a>
+            </div>
+        </div>
+
+        <div class="hero-visual" id="venn-anim-box">
+            <div class="venn">
+                <div class="vc vc-top"></div>
+                <div class="vc vc-left"></div>
+                <div class="vc vc-right"></div>
+                <div class="vc-center-glow"></div>
+                
+                <div class="vlabel vlabel-top">Platform<br>Engineer</div>
+                <div class="vlabel vlabel-left">Software<br>Engineer</div>
+                <div class="vlabel vlabel-right">Solutions<br>Architect</div>
+                <div class="vlabel vlabel-center">Forward<br>Deployed<br>Engineer</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATEMENT SECTION -->
+    <section class="statement-section" id="statement-trigger">
+        <div class="statement-inner reveal">
+            <p class="statement-label">The FDE Journey</p>
+            <h2 class="statement-text">
+                <span class="statement-part">Personal Projects</span>
+                <span class="statement-arrow">
+                    <svg viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 12 H68 M56 2 L70 12 L56 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="statement-highlight">Production Level</span>
+            </h2>
+            <p class="statement-sub">From writing your first API to deploying AI-powered enterprise systems — this is the complete engineering transformation.</p>
+        </div>
+    </section>
+
+    <!-- MARKET STATS BAR -->
+    <section class="stats-bar">
+        <div class="stats-bar-inner">
+            <div class="stat-item reveal d1">
+                <span class="stat-num">1,165<span class="stat-pct">%</span></span>
+                <span class="stat-desc">Job Listing Growth Since 2023</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item reveal d2">
+                <span class="stat-num">$174<span class="stat-pct">K</span></span>
+                <span class="stat-desc">Median FDE Salary</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item reveal d3">
+                <span class="stat-num">100<span class="stat-pct">%</span></span>
+                <span class="stat-desc">End-to-End Ownership</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT IS FDE -->
+    <section id="what-is-fde" class="section what-is-fde-section">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="center reveal">
+                <!-- <div class="section-tag">Definition</div> -->
+                <h2 class="section-heading">What is a <span class="green">Forward Deployed Engineer?</span></h2>
+            </div>
+            <div class="fde-def-inner reveal d1">
+                <p class="fde-def-text">
+                    A Forward Deployed Engineer (FDE) operates directly on the front lines. While traditional software engineers build products in isolation, an FDE <strong>deploys, customizes, and integrates</strong> complex software and AI systems directly into the client's live enterprise environment. They sit at the rare intersection of highly technical software engineering, infrastructure architecture, and direct client-facing problem solving.
+                </p>
+                <div class="fde-def-highlights">
+                    <div class="fde-hl-card">
+                        <div class="fde-hl-title">Engineering</div>
+                        <div class="fde-hl-desc">Writing robust, production-level code to solve bespoke challenges.</div>
+                    </div>
+                    <div class="fde-hl-card">
+                        <div class="fde-hl-title">Architecture</div>
+                        <div class="fde-hl-desc">Designing scalable cloud infrastructure and deployment pipelines.</div>
+                    </div>
+                    <div class="fde-hl-card">
+                        <div class="fde-hl-title">Consulting</div>
+                        <div class="fde-hl-desc">Translating ambiguous client needs into concrete technical solutions.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUE PROPOSITION -->
+    <section id="about" class="section vp-section">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="reveal">
+                <!-- <div class="section-tag">Why This Course</div> -->
+                <h2 class="section-heading">The Value <span class="green">Proposition</span></h2>
+            </div>
+            <div class="vp-grid">
+                <div class="vp-card reveal d1">
+                    <h3>Deploy, Don't Just Build</h3>
+                    <p>Move beyond building standalone models. Learn to deploy AI architectures directly into client environments and turn ambiguous problems into production systems.</p>
+                </div>
+                <div class="vp-card reveal d2">
+                    <h3>Enterprise-Grade Stack</h3>
+                    <p>Master the tools that power modern workflows — Python, Go, FastAPI, Docker, Kubernetes, and robust data platforms.</p>
+                </div>
+                <div class="vp-card reveal d3">
+                    <h3>Real-World Scenarios</h3>
+                    <p>Tackle the exact challenges faced in the field, from integrating generative AI to handling complex infrastructure and data pipelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section id="audience" class="section audience-section">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="reveal">
+                <!-- <div class="section-tag">Eligibility</div> -->
+                <h2 class="section-heading">Who Is <span class="green">This For?</span></h2>
+            </div>
+            <div class="audience-inner reveal d1">
+                <div>
+                    <h2 class="audience-title">Built for <span class="green">engineers</span> who want to go further.</h2>
+                </div>
+                <div class="audience-items">
+                    <div class="audience-item">
+                        <div class="audience-dot"></div>
+                        <p>Software developers and cloud engineers looking to pivot into AI deployment.</p>
+                    </div>
+                    <div class="audience-item">
+                        <div class="audience-dot"></div>
+                        <p>Technical trainers and educators wanting hands-on enterprise deployment experience.</p>
+                    </div>
+                    <div class="audience-item">
+                        <div class="audience-dot"></div>
+                        <p>Graduates ready to master system-level engineering and stakeholder management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section id="curriculum" class="section curriculum-section">
+        <div style="max-width:860px;margin:0 auto;">
+            <div class="center reveal">
+                <!-- <div class="section-tag">Full Roadmap</div> -->
+                <h2 class="section-heading">The FDE <span class="green">Curriculum</span></h2>
+                <p class="section-sub">A structured progression from foundational computer science to advanced AI engineering and final career deployment. Click each module to explore topics.</p>
+            </div>
+        </div>
+
+        <div class="accord-wrap">
+            <!-- Module 1 -->
+            <div class="accord reveal d1">
+                <button class="accord-btn" onclick="toggleAccord(this)">
+                    <div class="accord-info">
+                        <div class="accord-mod">Module 1</div>
+                        <div class="accord-title">CS Fundamentals</div>
+                        <div class="accord-count">8 Topics</div>
+                    </div>
+                    <div class="accord-arrow">
+                        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                </button>
+                <div class="accord-body">
+                    <div class="accord-inner">
+                        <div class="accord-topics">
+                            <span class="topic-chip">CS Fundamentals</span>
+                            <span class="topic-chip">Problem Solving</span>
+                            <span class="topic-chip">Data Structures & Algorithms</span>
+                            <span class="topic-chip">Operating Systems</span>
+                            <span class="topic-chip">Computer Networking</span>
+                            <span class="topic-chip">DBMS</span>
+                            <span class="topic-chip">Software Engineering</span>
+                            <span class="topic-chip">System Designing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="accord reveal d2">
+                <button class="accord-btn" onclick="toggleAccord(this)">
+                    <div class="accord-info">
+                        <div class="accord-mod">Module 2</div>
+                        <div class="accord-title">Full Stack Development (FSD)</div>
+                        <div class="accord-count">6 Topics</div>
+                    </div>
+                    <div class="accord-arrow">
+                        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                </button>
+                <div class="accord-body">
+                    <div class="accord-inner">
+                        <div class="accord-topics">
+                            <span class="topic-chip">FSD Overview</span>
+                            <span class="topic-chip">Frontend</span>
+                            <span class="topic-chip">Backend</span>
+                            <span class="topic-chip">Version Control</span>
+                            <span class="topic-chip">Authentication & Security</span>
+                            <span class="topic-chip">API Creation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="accord reveal d3">
+                <button class="accord-btn" onclick="toggleAccord(this)">
+                    <div class="accord-info">
+                        <div class="accord-mod">Module 3</div>
+                        <div class="accord-title">Cloud, Infrastructure & DevOps</div>
+                        <div class="accord-count">9 Topics</div>
+                    </div>
+                    <div class="accord-arrow">
+                        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                </button>
+                <div class="accord-body">
+                    <div class="accord-inner">
+                        <div class="accord-topics">
+                            <span class="topic-chip">Cloud Concepts</span>
+                            <span class="topic-chip">AWS</span>
+                            <span class="topic-chip">Linux</span>
+                            <!-- <span class="topic-chip">DevOps</span> -->
+                            <span class="topic-chip">Docker</span>
+                            <span class="topic-chip">Kubernetes</span>
+                            <span class="topic-chip">Ansible</span>
+                            <span class="topic-chip">Terraform</span>
+                            <span class="topic-chip">GitHub Actions</span>
+                            <span class="topic-chip">Prometheus & Grafana</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="accord reveal d4">
+                <button class="accord-btn" onclick="toggleAccord(this)">
+                    <div class="accord-info">
+                        <div class="accord-mod">Module 4</div>
+                        <div class="accord-title">Software Testing & Quality Assurance</div>
+                        <div class="accord-count">9 Topics</div>
+                    </div>
+                    <div class="accord-arrow">
+                        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                </button>
+                <div class="accord-body">
+                    <div class="accord-inner">
+                        <div class="accord-topics">
+                            <span class="topic-chip">Testing Fundamentals</span>
+                            <span class="topic-chip">Types of Testing</span>
+                            <span class="topic-chip">Test Case Design</span>
+                            <span class="topic-chip">Defect Management</span>
+                            <span class="topic-chip">API Testing</span>
+                            <span class="topic-chip">Database Testing</span>
+                            <span class="topic-chip">Automation Testing</span>
+                            <span class="topic-chip">Performance Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="accord reveal d5">
+                <button class="accord-btn" onclick="toggleAccord(this)">
+                    <div class="accord-info">
+                        <div class="accord-mod">Module 5</div>
+                        <div class="accord-title">AI Engineering & Applied LLMs</div>
+                        <div class="accord-count">15 Topics</div>
+                    </div>
+                    <div class="accord-arrow">
+                        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                </button>
+                <div class="accord-body">
+                    <div class="accord-inner">
+                        <div class="accord-topics">
+                            <span class="topic-chip">AI Engineer Role</span>
+                            <span class="topic-chip">Types of Models</span>
+                            <span class="topic-chip">LLMs</span>
+                            <span class="topic-chip">Prompt Engineering</span>
+                            <span class="topic-chip">Context Engineering</span>
+                            <span class="topic-chip">Embeddings</span>
+                            <span class="topic-chip">Vector Databases</span>
+                            <span class="topic-chip">RAG</span>
+                            <span class="topic-chip">AI Agents</span>
+                            <span class="topic-chip">MCP</span>
+                            <span class="topic-chip">Data Pipelines / ETL</span>
+                            <span class="topic-chip">AI Safety & Ethics</span>
+                            <span class="topic-chip">LLM Observability</span>
+                            <span class="topic-chip">LLM Evaluations</span>
+                            <span class="topic-chip">Vibe Coding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="accord reveal d6">
+                <button class="accord-btn" onclick="toggleAccord(this)">
+                    <div class="accord-info">
+                        <div class="accord-mod">Module 6</div>
+                        <div class="accord-title">Real-World Application & Career Deployment</div>
+                        <div class="accord-count">3 Topics</div>
+                    </div>
+                    <div class="accord-arrow">
+                        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                </button>
+                <div class="accord-body">
+                    <div class="accord-inner">
+                        <div class="accord-topics">
+                            <span class="topic-chip">Project Discovery & Scoping</span>
+                            <span class="topic-chip">Capstone Project</span>
+                            <span class="topic-chip">Career Deployment Sprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="https://technicalhub.io/images/technicalhub_logs/GREEN%20TM.png" alt="Technical Hub">
+                </div>
+                <p>Building the next generation of Forward Deployed Engineers.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Program</h4>
+                <a href="#about">Value Proposition</a>
+                <a href="#audience">Who Is This For?</a>
+                <a href="#curriculum">Curriculum</a>
+                <a href="#apply">Apply Now</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Technical Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll shadow
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const el = document.querySelector(a.getAttribute('href'));
+                if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 80, behavior: 'smooth' });
+            });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                } else {
+                    e.target.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Center Stage Venn Animation
+        const statementObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                const vennBox = document.getElementById('venn-anim-box');
+                if (e.isIntersecting) {
+                    vennBox.classList.add('center-stage');
+                } else {
+                    vennBox.classList.remove('center-stage');
+                }
+            });
+        }, { threshold: 0.3 }); // Trigger when 30% of statement section is in view
+        
+        const statementTrigger = document.querySelector('.statement-section');
+        if (statementTrigger) statementObserver.observe(statementTrigger);
+
+        // Accordion toggle
+        function toggleAccord(btn) {
+            const item = btn.closest('.accord');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.accord.open').forEach(a => a.classList.remove('open'));
+
+            // Open clicked if it was closed
+            if (!isOpen) item.classList.add('open');
+        }
+    </script>
+</body>
+</html>
